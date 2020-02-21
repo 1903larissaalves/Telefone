@@ -18,11 +18,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     EditText telefone;
     Button ligar;
+    Button limpar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ligar();
+        limparCampo();
     }
 
     public void ligar(){
@@ -35,14 +38,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String numero = telefone.getText().toString();
-                Uri uri = Uri.parse("tel:" + numero);
-                Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                if (numero.equals("") || numero == null){
+                    telefone.setError("Preencher campo número");
+                }else{
+                    Uri uri = Uri.parse("tel:" + numero);
+                    Intent intent = new Intent(Intent.ACTION_DIAL, uri);
 
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-                    return;
+                    if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                        return;
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void limparCampo(){
+
+        limpar = (Button) findViewById(R.id.btnLimpar);
+        limpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                telefone.setText("");
             }
         });
     }

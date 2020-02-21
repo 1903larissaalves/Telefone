@@ -7,34 +7,60 @@ android:layout_height="match_parent"
 tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/btnLigar"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/layout_botoes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Ligar"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtLigar"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
+
+
+        <Button
+            android:id="@+id/btnLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Limpar"
+            android:background="#FFD700"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnLigar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Ligar"
+            android:background="#228B22"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/edtLigar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:ems="10"
+        android:layout_marginBottom="8dp"
+        android:hint="Número:"
         android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/layout_botoes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
